@@ -1,105 +1,69 @@
-import {
-  Navbar as HeroUINavbar,
-  NavbarContent,
-  NavbarMenu,
-  NavbarMenuToggle,
-  NavbarBrand,
-  NavbarItem,
-  NavbarMenuItem,
-} from "@heroui/navbar";
-import { Button } from "@heroui/button";
-import { Kbd } from "@heroui/kbd";
-import { Link } from "@heroui/link";
-import { Input } from "@heroui/input";
-import { link as linkStyles } from "@heroui/theme";
-import NextLink from "next/link";
-import clsx from "clsx";
-import { siteConfig } from "@/config/site";
-import { SearchIcon } from "@/components/icons";
-import { Image } from "@heroui/image";
+"use client"
+import React, { useState } from "react";
+import Image from "next/image";
+import logo from "../public/Tripvia-logo.png";
+import Link from "next/link";
 
-export const Navbar = () => {
-  const searchInput = (
-    <Input
-      aria-label="Search"
-      classNames={{
-        inputWrapper: "bg-default-100",
-        input: "text-sm",
-      }}
-      endContent={
-        <Kbd className="hidden lg:inline-block" keys={["command"]}>
-          K
-        </Kbd>
-      }
-      labelPlacement="outside"
-      placeholder="Search..."
-      startContent={
-        <SearchIcon className="text-base text-default-400 pointer-events-none flex-shrink-0" />
-      }
-      type="search"
-    />
-  );
+function Navbar() {
+  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <HeroUINavbar maxWidth="xl" position="sticky">
-      <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
-        <NavbarBrand as="li" className="gap-3 max-w-fit">
-          <NextLink className="flex justify-start items-center gap-1" href="/">
-            <Image className="w-20" src="/Tripvia-logo.png" />
-          </NextLink>
-        </NavbarBrand>
-        <ul className="hidden lg:flex gap-4 justify-start ml-2">
-          {siteConfig.navItems.map((item) => (
-            <NavbarItem key={item.href}>
-              <NextLink
-                className={clsx(
-                  linkStyles({ color: "foreground" }),
-                  "data-[active=true]:text-primary data-[active=true]:font-medium"
-                )}
-                color="foreground"
-                href={item.href}
-              >
-                {item.label}
-              </NextLink>
-            </NavbarItem>
-          ))}
-        </ul>
-      </NavbarContent>
+    <>
+      {/* Blur overlay */}
+      {menuOpen && (
+        <div className="fixed inset-0 backdrop-blur-md bg-black/30 z-10" />
+      )}
 
-      <NavbarContent
-        className="hidden sm:flex basis-1/5 sm:basis-full"
-        justify="end"
-      >
-        <Button></Button>
-        <NavbarItem className="hidden md:flex"></NavbarItem>
-      </NavbarContent>
-
-      <NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
-        <NavbarMenuToggle />
-      </NavbarContent>
-
-      <NavbarMenu>
-        {searchInput}
-        <div className="mx-4 mt-2 flex flex-col gap-2">
-          {siteConfig.navMenuItems.map((item, index) => (
-            <NavbarMenuItem key={`${item}-${index}`}>
-              <Link
-                color={
-                  index === 2
-                    ? "primary"
-                    : index === siteConfig.navMenuItems.length - 1
-                      ? "danger"
-                      : "foreground"
-                }
-                href="#"
-                size="lg"
-              >
-                {item.label}
-              </Link>
-            </NavbarMenuItem>
-          ))}
+      <header className="bg-white w-full
+       flex items-center justify-between px-4 py-4 relative z-20">
+        {/* Logo */}
+        <div className="flex items-center">
+          <Image src={logo} alt="Tripvia logo" width={120} height={40} />
         </div>
-      </NavbarMenu>
-    </HeroUINavbar>
+
+        {/* Desktop Nav */}
+        <nav className="hidden md:flex gap-6 text-sm text-gray-700">
+          <Link href="/" className="hover:text-blue-500 uppercase">Home</Link>
+          <Link href="#features" className="hover:text-blue-500 uppercase">How it works</Link>
+          <Link href="#faq" className="hover:text-blue-500 uppercase">Faq</Link>
+          <Link href="#footer" className="hover:text-blue-500 uppercase">Contact us</Link>
+        </nav>
+
+        <nav className="hidden md:flex gap-6 text-gray-700">
+           <button className="py-2 w-[120px] text-sm px-4 uppercase bg-inherit rounded-[25px] text-black border border-black ">
+             Sign Up
+           </button>
+           <button className="py-2  w-[120px] text-sm px-4 uppercase bg-[#E85D04] text-[white] rounded-[25px]">
+             Get App 
+           </button>
+        </nav>
+
+        {/* Mobile Menu Toggle */}
+        <button
+          className="md:hidden mr-8 text-gray-700 z-30"
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
+          {menuOpen ? "✕" : "☰"}
+        </button>
+
+        {/* Mobile Nav */}
+        {menuOpen && (
+          <nav className="absolute top-full left-0 w-full bg-white flex flex-col items-center gap-4 py-6 shadow-md md:hidden z-20">
+            <Link href="/" className="hover:text-blue-500 uppercase">Home</Link>
+          <Link href="#features" className="hover:text-blue-500 uppercase">How it works</Link>
+          <Link href="#faq" className="hover:text-blue-500 uppercase">Faq</Link>
+          <Link href="#footer" className="hover:text-blue-500 uppercase">Contact us</Link>
+           <button className="py-2 w-[120px] text-sm px-4 uppercase bg-inherit rounded-[25px] text-black border border-black ">
+             Sign Up
+           </button>
+           <button className="py-2 w-[120px] text-sm px-4 uppercase bg-[#E85D04] text-[white] rounded-[25px]">
+             Get App 
+           </button>
+        </nav>
+        )}
+      </header>
+    </>
   );
-};
+}
+
+export default Navbar;
