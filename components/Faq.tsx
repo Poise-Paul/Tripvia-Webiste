@@ -3,12 +3,27 @@ import React, { useState } from "react";
 import { FaChevronDown } from "react-icons/fa";
 
 const faqs = [
-  { question: "Can I pay with local methods or mobile wallets?", answer: "Yes, you can pay with a variety of local payment methods and mobile wallets depending on your region." },
-  { question: "What happens if my booking fails?", answer: "If your booking fails, you won’t be charged. You can retry the booking or contact support for help." },
-  { question: "Can I change my flight after booking?", answer: "Yes, you can change your flight depending on airline policies. Additional charges may apply." },
-  { question: "Is Tripvia available on desktop?", answer: "Absolutely! Tripvia works seamlessly across desktop and mobile devices." },
+  {
+    question: "Can I pay with local methods or mobile wallets?",
+    answer:
+      "Absolutely, Trivia supports multiple payment options including local bank transfers, mobile wallets and card payments.",
+  },
+  {
+    question: "What happens if my booking fails?",
+    answer:
+      "we've built Tripvia to minimize failures. In rare cases, our support team resolves issues within minutes.",
+  },
+  {
+    question: "Can I change my flight after booking?",
+    answer:
+      "Yes! Tripvia offers post booking tools to modify, cancel or upgrade your flight.",
+  },
+  {
+    question: "Is Tripvia available on desktop?",
+    answer:
+      "Yes, but our mobile app is optimized for best experience- and we're shifting all bookings to mobile",
+  },
 ];
-
 function Faq() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 

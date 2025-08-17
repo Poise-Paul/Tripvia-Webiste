@@ -5,7 +5,12 @@ import Image from "next/image";
 
 function BookSmarter() {
   return (
-    <section className="px-6 md:px-12 lg:px-20 flex flex-col lg:flex-row items-stretch bg-white mt-10 rounded-2xl shadow-lg overflow-hidden">
+    <section
+      className="px-6 md:px-12 lg:px-20
+     flex flex-col lg:flex-row items-stretch
+      bg-white mt-10 rounded-2xl shadow-lg
+      overflow-hidden max-w-full "
+    >
       {/* Left side with background + mockup */}
       <div
         className="w-full lg:w-1/2 flex justify-center items-center py-12"

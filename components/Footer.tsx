@@ -66,7 +66,11 @@ function Footer() {
 
       {/* Bottom Section */}
       <div className="w-full flex flex-col md:flex-row items-center justify-between px-6 md:px-16 py-6 border-t border-gray-200">
-        <Image src={logo} alt="Tripvia Logo" className="w-[90px] md:w-[110px]" />
+        <Image
+          src={logo}
+          alt="Tripvia Logo"
+          className="w-[90px] md:w-[110px]"
+        />
         <p className="text-xs md:text-sm uppercase text-gray-700 font-medium text-center mt-3 md:mt-0">
           TERMS · PRIVACY © TRIPVIA {new Date().getFullYear()}
         </p>
