@@ -54,11 +54,14 @@ function KeyFeatures() {
         feature puts the traveler first.
       </p>
 
-      <div className="my-10 flex flex-col md:flex-row flex-wrap justify-between gap-4">
+      <div
+        className="my-10 grid grid-cols-1 sm:grid-cols-2
+         md:grid-cols-3 gap-6"
+      >
         {features.map((sec, index) => (
           <div
             key={index}
-            className="flex flex-col gap-2.5 justify-center text-center items-center w-full md:w-[350px]"
+            className="flex flex-col gap-2.5 justify-center text-center items-center w-full max-w-[350px]"
             data-aos="zoom-in"
             data-aos-delay={index * 200}
           >

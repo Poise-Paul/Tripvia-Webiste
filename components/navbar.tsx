@@ -4,6 +4,7 @@ import Image from "next/image";
 import logo from "../public/Tripvia-logo.png";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { motion, AnimatePresence } from "framer-motion";
 
 type NavbarProps = {
   color?: string; // desktop text color
@@ -17,6 +18,7 @@ function Navbar({
   sideBarColor = "text-gray-700", // default dark text for sidebar
 }: NavbarProps) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [popupOpen, setPopupOpen] = useState(false);
   const pathname = usePathname();
 
   const linkClasses = (path: string, isSidebar = false) =>
@@ -30,7 +32,7 @@ function Navbar({
 
   return (
     <>
-      {/* Blur overlay */}
+      {/* Blur overlay when mobile menu open */}
       {menuOpen && (
         <div
           className="fixed inset-0 backdrop-blur-md bg-black/30 z-10"
@@ -67,7 +69,10 @@ function Navbar({
           >
             Sign Up
           </button>
-          <button className="py-2 w-[120px] text-sm px-4 uppercase bg-[#E85D04] text-white rounded-[25px]">
+          <button
+            onClick={() => setPopupOpen(true)}
+            className="py-2 w-[120px] text-sm px-4 uppercase bg-[#E85D04] text-white rounded-[25px]"
+          >
             Get App
           </button>
         </nav>
@@ -106,11 +111,51 @@ function Navbar({
           >
             Sign Up
           </button>
-          <button className="py-2 w-[120px] text-sm px-4 uppercase bg-[#E85D04] text-white rounded-[25px]">
+          <button
+            onClick={() => setPopupOpen(true)}
+            className="py-2 w-[120px] text-sm px-4 uppercase bg-[#E85D04] text-white rounded-[25px]"
+          >
             Get App
           </button>
         </nav>
       </header>
+
+      <AnimatePresence>
+        {popupOpen && (
+          <>
+            <motion.div
+              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setPopupOpen(false)}
+            />
+
+            <motion.div
+              className="fixed inset-0 z-50 flex items-center justify-center"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.8 }}
+              transition={{ duration: 0.3 }}
+            >
+              <div className="bg-white rounded-2xl shadow-2xl max-w-sm w-full p-6 text-center">
+                <h2 className="text-xl font-semibold text-gray-800">
+                  🚀 We’re working on our app!
+                </h2>
+                <p className="mt-2 text-gray-600 text-sm">
+                  Our mobile app is coming soon. Stay tuned!
+                </p>
+                <button
+                  onClick={() => setPopupOpen(false)}
+                  className="mt-4 px-6 py-2 rounded-[25px] bg-[#E85D04] text-white text-sm"
+                >
+                  Got it
+                </button>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </>
   );
 }

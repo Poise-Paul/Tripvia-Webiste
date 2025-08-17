@@ -27,7 +27,7 @@ export default function Hero() {
           className="flex-1 max-w-xl text-center md:text-left"
           data-aos="fade-right"
         >
-          <h1 className="text-5xl md:text-7xl font-extrabold mb-6 leading-tight">
+          <h1 className="text-5xl md:text-8xl lg:text-7xl font-extrabold mb-6 leading-tight">
             <span className="block text-black">Switch to</span>
             Flight Mode
           </h1>
