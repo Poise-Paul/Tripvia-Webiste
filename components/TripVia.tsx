@@ -1,4 +1,8 @@
 "use client";
+import { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 import React from "react";
 import Image from "next/image";
 import Slider from "react-slick";
@@ -36,6 +40,10 @@ const tripvia = [
 ];
 
 function TripVia() {
+  useEffect(() => {
+    AOS.init({ duration: 1000, once: true });
+  }, []);
+
   // Slider settings
   const settings = {
     dots: true,
@@ -53,9 +61,12 @@ function TripVia() {
   };
 
   return (
-    <section className="px-4 md:px-12 bg-white mt-12 py-12 overflow-hidden">
+    <section
+      className="px-4 md:px-16 bg-white mt-12 py-12 overflow-hidden"
+      data-aos="fade-up"
+    >
       {/* Section Heading */}
-      <div className="text-center max-w-2xl mx-auto">
+      <div className="text-center max-w-2xl mx-auto" data-aos="fade-up">
         <h1 className="text-3xl md:text-4xl font-semibold text-black">
           Who <span className="text-[#E85D04]">TripVia</span> is For
         </h1>
@@ -66,10 +77,15 @@ function TripVia() {
       </div>
 
       {/* Carousel */}
-      <div className="mt-12">
+      <div className="mt-12" data-aos="zoom-in">
         <Slider {...settings}>
           {tripvia.map((item, index) => (
-            <div key={index} className="px-2">
+            <div
+              key={index}
+              className="px-2"
+              data-aos="fade-up"
+              data-aos-delay={index * 200}
+            >
               <div className="relative rounded-2xl overflow-hidden shadow-lg group h-[350px]">
                 {/* Image */}
                 <Image
@@ -95,7 +111,11 @@ function TripVia() {
       </div>
 
       {/* CTA Button */}
-      <div className="text-center mt-12">
+      <div
+        className="text-center mt-12"
+        data-aos="fade-up"
+        data-aos-delay="600"
+      >
         <button className="bg-[#E85D04] text-white px-8 py-3 text-sm md:text-base font-medium rounded-full shadow-md hover:bg-[#d24f00] transition-colors">
           Learn More
         </button>

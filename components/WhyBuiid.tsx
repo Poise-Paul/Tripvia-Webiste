@@ -1,3 +1,8 @@
+"use client";
+import { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 import React from "react";
 import img4 from "../public/image 4.png";
 import img5 from "../public/image 5.png";
@@ -23,30 +28,37 @@ const whyArray = [
 ];
 
 function WhyBuiid() {
+  useEffect(() => {
+    AOS.init({ duration: 1000, once: true });
+  }, []);
+
   return (
-    <section className="px-8 bg-white mt-6 py-6">
+    <section className="px-4 md:px-16 bg-white mt-6 py-6">
       <h1
-        className="text-center text-3xl capitalize md:text-4xl text-black font-semibold
-      "
+        className="text-center text-3xl capitalize md:text-4xl text-black font-semibold"
+        data-aos="fade-up"
       >
         Why We&#x27;re building <span className="text-[#E85D04]">tripvia</span>
       </h1>
-      <p className="mt-2 text-black text-center w-full md:w-[600px] mx-auto text-sm">
+
+      <p
+        className="mt-2 text-black text-center w-full md:w-[600px] mx-auto text-sm"
+        data-aos="fade-up"
+        data-aos-delay="200"
+      >
         <span className="text-[#E85D04 ]">Tripvia</span> is designed to be the
         flight booking platform travelers actually want—fast, secure, and built
         for real-world needs. In a market flooded with outdated tools and overly
         niche apps, Tripvia stands out by offering:
       </p>
 
-      <div
-        className="my-10 flex flex-col md:flex-row flex-wrap justify-around
-       gap-4"
-      >
+      <div className="my-10 flex flex-col md:flex-row flex-wrap justify-between gap-4">
         {whyArray.map((sec, index) => (
           <div
             key={index}
-            className="flex flex-col gap-2.5
-             justify-center text-center items-center w-full md:w-[350px]"
+            className="flex flex-col gap-2.5 justify-center text-center items-center w-full md:w-[350px]"
+            data-aos="zoom-in"
+            data-aos-delay={index * 200}
           >
             <Image src={sec.img} alt="" className="w-[80%]" />
             <h1 className="text-xl font-semibold text-black">{sec.heading}</h1>
@@ -54,11 +66,9 @@ function WhyBuiid() {
           </div>
         ))}
       </div>
-      <div className="text-center mt-5">
-        <button
-          className="bg-[#E85D04]
-           text-white px-6 py-2 mx-auto text-sm rounded-[25px] shadow-md"
-        >
+
+      <div className="text-center mt-5" data-aos="fade-up" data-aos-delay="600">
+        <button className="bg-[#E85D04] text-white px-6 py-2 mx-auto text-sm rounded-[25px] shadow-md">
           Join Us Today
         </button>
       </div>

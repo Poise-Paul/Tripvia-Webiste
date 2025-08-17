@@ -10,8 +10,8 @@ const config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["var(--font-sans)"],
-        mono: ["var(--font-mono)"],
+        rebond: ["Rebond", "sans-serif"],
+        roobert: ["Roobert-Font", "sans-serif"],
       },
     },
   },

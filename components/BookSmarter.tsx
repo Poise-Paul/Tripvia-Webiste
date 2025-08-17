@@ -1,15 +1,22 @@
-import React from "react";
-import mockUp from "../public/Mockup 1.png";
+"use client";
+import React, { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
+
+import mockUp from "../public/phone-02.png";
 import bgImage from "../public/place-flying-sunset-sky.jpg";
 import Image from "next/image";
 
 function BookSmarter() {
+  useEffect(() => {
+    AOS.init({ duration: 1000, once: true });
+  }, []);
+
   return (
     <section
-      className="px-6 md:px-12 lg:px-20
-     flex flex-col lg:flex-row items-stretch
-      bg-white mt-10 rounded-2xl shadow-lg
-      overflow-hidden max-w-full "
+      className="px-4 md:px-22 flex flex-col lg:flex-row items-stretch
+       bg-white mt-10   overflow-hidden max-w-full"
+      data-aos="fade-up"
     >
       {/* Left side with background + mockup */}
       <div
@@ -20,6 +27,7 @@ function BookSmarter() {
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
+        data-aos="fade-right"
       >
         <Image
           src={mockUp}
@@ -29,7 +37,10 @@ function BookSmarter() {
       </div>
 
       {/* Right side with text + button */}
-      <div className="w-full lg:w-1/2 bg-[#D8662A] p-8 md:p-12 text-white flex flex-col justify-center gap-6">
+      <div
+        className="w-full lg:w-1/2 bg-[#D8662A] p-8 md:p-12 text-white flex flex-col justify-center gap-6"
+        data-aos="fade-left"
+      >
         <h1 className="text-3xl md:text-5xl font-bold leading-tight">
           Book Smarter. <br /> Fly Better.
         </h1>

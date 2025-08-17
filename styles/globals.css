@@ -1,3 +1,34 @@
 @import "tailwindcss";
-
 @config "../tailwind.config.js";
+
+@font-face {
+  font-family: "Roobert-Font";
+  src: url("/fonts/Roobert-Font/RoobertSemiMonoTRIAL-Regular-BF67243fd53ad6a.otf")
+    format("opentype");
+}
+
+@font-face {
+  font-family: "Rebond";
+  src: url("/fonts/rebond-grotesque-font-family-1755371656-0/ESRebondGrotesqueTRIAL-Regular-BF66189040b697b.otf")
+    format("opentype");
+}
+
+/* Apply Rebond for all headings */
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-rebond;
+  }
+
+  body {
+    @apply font-roobert;
+  }
+}
+
+body {
+  overflow-x: hidden;
+}
