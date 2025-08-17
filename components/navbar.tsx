@@ -1,19 +1,31 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import logo from "../public/Tripvia-logo.png";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-function Navbar() {
+type NavbarProps = {
+  color?: string; // desktop text color
+  active?: string; // active link color
+  sideBarColor?: string; // mobile sidebar text color
+};
+
+function Navbar({
+  color = "text-gray-700",
+  active = "text-[#D8662A]",
+  sideBarColor = "text-gray-700", // default dark text for sidebar
+}: NavbarProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
 
-  const linkClasses = (path: string) =>
+  const linkClasses = (path: string, isSidebar = false) =>
     `uppercase transition ${
       pathname === path
-        ? "text-[#D8662A] underline underline-offset-4"
-        : "text-gray-700 hover:text-[#D8662A]"
+        ? `${active} underline underline-offset-4`
+        : `${isSidebar ? sideBarColor : color} hover:${
+            isSidebar ? sideBarColor : color
+          }`
     }`;
 
   return (
@@ -37,7 +49,7 @@ function Navbar() {
           <Link href="/" className={linkClasses("/")}>
             Home
           </Link>
-          <Link href="/about" className={linkClasses("/about")}>
+          <Link href="/how-it-works" className={linkClasses("/how-it-works")}>
             How it works
           </Link>
           <Link href="/faq" className={linkClasses("/faq")}>
@@ -48,9 +60,11 @@ function Navbar() {
           </Link>
         </nav>
 
-        {/* Buttons */}
-        <nav className="hidden md:flex gap-6 text-gray-700">
-          <button className="py-2 w-[120px] text-sm px-4 uppercase bg-inherit rounded-[25px] text-black border border-black">
+        {/* Buttons (Desktop) */}
+        <nav className="hidden md:flex gap-6">
+          <button
+            className={`py-2 w-[120px] text-sm px-4 uppercase bg-inherit rounded-[25px] border ${color} border-current`}
+          >
             Sign Up
           </button>
           <button className="py-2 w-[120px] text-sm px-4 uppercase bg-[#E85D04] text-white rounded-[25px]">
@@ -60,7 +74,7 @@ function Navbar() {
 
         {/* Mobile Menu Toggle */}
         <button
-          className="md:hidden mr-4 text-2xl text-gray-700 z-30"
+          className={`md:hidden mr-4 text-2xl z-30 ${color}`}
           onClick={() => setMenuOpen(!menuOpen)}
         >
           {menuOpen ? "✕" : "☰"}
@@ -71,20 +85,25 @@ function Navbar() {
           className={`fixed top-0 right-0 h-full w-full max-w-[280px] bg-white flex flex-col items-center gap-6 pt-24 shadow-lg transform transition-transform duration-300 ease-in-out z-20 
             ${menuOpen ? "translate-x-0" : "translate-x-full"}`}
         >
-          <Link href="/" className={linkClasses("/")}>
+          <Link href="/" className={linkClasses("/", true)}>
             Home
           </Link>
-          <Link href="/about" className={linkClasses("/about")}>
+          <Link
+            href="/how-it-works"
+            className={linkClasses("/how-it-works", true)}
+          >
             How it works
           </Link>
-          <Link href="/faq" className={linkClasses("/faq")}>
+          <Link href="/faq" className={linkClasses("/faq", true)}>
             Faq
           </Link>
-          <Link href="/contact" className={linkClasses("/contact")}>
+          <Link href="/contact" className={linkClasses("/contact", true)}>
             Contact us
           </Link>
 
-          <button className="py-2 w-[120px] text-sm px-4 uppercase bg-inherit rounded-[25px] text-black border border-black">
+          <button
+            className={`py-2 w-[120px] text-sm px-4 uppercase bg-inherit rounded-[25px] border ${sideBarColor} border-current`}
+          >
             Sign Up
           </button>
           <button className="py-2 w-[120px] text-sm px-4 uppercase bg-[#E85D04] text-white rounded-[25px]">

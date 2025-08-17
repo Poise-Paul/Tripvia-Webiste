@@ -15,7 +15,8 @@ function Footer() {
   return (
     <footer className="bg-white mt-10">
       <section
-        className="bg-[#D8662A] px-8 md:px-16 py-12 text-white text-sm grid grid-cols-1 md:grid-cols-3 gap-10"
+        className="bg-[#D8662A] 
+        px-8 md:px-16 py-12 text-white text-sm grid grid-cols-1 md:grid-cols-3 gap-10"
         data-aos="fade-up"
       >
         <div className="flex flex-col gap-2" data-aos="fade-right">
