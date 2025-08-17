@@ -3,8 +3,8 @@ import React, { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
-import img4 from "../public/image 4.png";
-import img5 from "../public/image 5.png";
+import img4 from "../public/phone-01.png";
+import img5 from "../public/trip-image.jpg";
 import img6 from "../public/Group 9.png";
 import Image from "next/image";
 
