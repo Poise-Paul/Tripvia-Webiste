@@ -86,46 +86,57 @@ function Navbar({
         </nav>
 
         {/* Mobile Menu Toggle */}
-        <button
-          className={`md:hidden mr-4 text-2xl z-30 ${color}`}
-          onClick={() => setMenuOpen(!menuOpen)}
-        >
-          {menuOpen ? "✕" : "☰"}
-        </button>
+       {/* Mobile Menu Toggle (Hamburger outside sidebar) */}
+<button
+  className={`md:hidden mr-4 text-2xl z-30 text-white`}
+  onClick={() => setMenuOpen(true)}
+>
+  ☰
+</button>
 
-        {/* Mobile Nav (Slide-in) */}
-        <nav
-          className={`fixed top-0 right-0 h-full w-full max-w-[280px] bg-white flex flex-col items-center gap-6 pt-24 shadow-lg transform transition-transform duration-300 ease-in-out z-20 
-            ${menuOpen ? "translate-x-0" : "translate-x-full"}`}
-        >
-          <Link href="/" className={linkClasses("/", true)}>
-            Home
-          </Link>
-          <Link
-            href="/how-it-works"
-            className={linkClasses("/how-it-works", true)}
-          >
-            How it works
-          </Link>
-          <Link href="/faq" className={linkClasses("/faq", true)}>
-            Faq
-          </Link>
-          <Link href="/contact" className={linkClasses("/contact", true)}>
-            Contact us
-          </Link>
+{/* Mobile Nav (Slide-in) */}
+<nav
+  className={`fixed top-0 right-0 h-screen
+    w-[80%] bg-white
+    flex flex-col items-center gap-6 
+    pt-24 shadow-lg transform transition-transform duration-300 ease-in-out z-20 
+    ${menuOpen ? "translate-x-0" : "translate-x-full"}`}
+>
+  <div className="text-end top-2 right-[85px] absolute">
+    <button
+    className="text-end text-3xl text-black"
+    onClick={() => setMenuOpen(false)}
+  >
+    ✕
+  </button>
+  </div>
 
-          <button
-            className={`py-2 w-[120px] text-sm px-4 uppercase bg-inherit rounded-[25px] border ${sideBarColor} border-current`}
-          >
-            Sign Up
-          </button>
-          <button
-            onClick={() => setPopupOpen(true)}
-            className="py-2 w-[120px] text-sm px-4 uppercase bg-[#E85D04] text-white rounded-[25px]"
-          >
-            Get App
-          </button>
-        </nav>
+  <Link href="/" className={linkClasses("/", true)}>
+    Home
+  </Link>
+  <Link href="/how-it-works" className={linkClasses("/how-it-works", true)}>
+    How it works
+  </Link>
+  <Link href="/faq" className={linkClasses("/faq", true)}>
+    Faq
+  </Link>
+  <Link href="/contact" className={linkClasses("/contact", true)}>
+    Contact us
+  </Link>
+
+  <button
+    className={`py-2 w-[120px] text-sm px-4 uppercase bg-inherit rounded-[25px] border ${sideBarColor} border-current`}
+  >
+    Sign Up
+  </button>
+  <button
+    onClick={() => setPopupOpen(true)}
+    className="py-2 w-[120px] text-sm px-4 uppercase bg-[#E85D04] text-white rounded-[25px] transition"
+  >
+    Get App
+  </button>
+</nav>
+
       </header>
 
       <AnimatePresence>
