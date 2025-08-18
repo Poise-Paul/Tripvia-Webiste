@@ -5,17 +5,20 @@ import logo from "../public/Tripvia-logo.png";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
+import { StaticImageData } from "next/image";
 
 type NavbarProps = {
   color?: string; // desktop text color
   active?: string; // active link color
   sideBarColor?: string; // mobile sidebar text color
+  logoImg?: StaticImageData;
 };
 
 function Navbar({
   color = "text-gray-700",
-  active = "text-[#D8662A]",
-  sideBarColor = "text-gray-700", // default dark text for sidebar
+  active = "text-[#f5c144]",
+  sideBarColor = "text-gray-700",
+  logoImg, // default dark text for sidebar
 }: NavbarProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [popupOpen, setPopupOpen] = useState(false);
@@ -42,9 +45,14 @@ function Navbar({
 
       <header className="w-full flex items-center justify-between px-4 lg:px-20 py-4 relative z-20">
         {/* Logo */}
-        <div className="flex items-center">
-          <Image src={logo} alt="Tripvia logo" width={120} height={40} />
-        </div>
+        <Link href="/" className="flex items-center">
+          <Image
+            src={logoImg || logo}
+            alt="Tripvia logo"
+            width={120}
+            height={40}
+          />
+        </Link>
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex gap-6 text-sm">
