@@ -9,7 +9,7 @@ type HeroProps = {
 
 function Hero({ text, subtext }: HeroProps) {
   return (
-    <section className="relative min-h-[30vh] bg-[#D8662A] overflow-hidden">
+    <section className="relative min-h-[30vh] bg-[#D8662A]">
       <Navbar color="text-white" sideBarColor="text-gray-700" logoImg={logo} />
 
       <div className="flex items-center px-3 flex-col gap-2.5 justify-center">
