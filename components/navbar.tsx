@@ -27,7 +27,7 @@ function Navbar({
   const linkClasses = (path: string, isSidebar = false) =>
     `uppercase transition ${
       pathname === path
-        ? `${active} underline underline-offset-4`
+        ? `${active} underline underline-offset-4 font-bold`
         : `${isSidebar ? sideBarColor : color} hover:${
             isSidebar ? sideBarColor : color
           }`
