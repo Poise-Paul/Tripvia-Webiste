@@ -104,7 +104,7 @@ function Navbar({
 
         {/* Mobile Menu Toggle */}
         <button
-          className="md:hidden mr-4 text-2xl z-30 text-white"
+          className="md:hidden mr-4 text-2xl z-30 text-black"
           onClick={() => setMenuOpen(true)}
         >
           ☰
